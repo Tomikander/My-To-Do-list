@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
    const button = document.getElementById('addButton');
    const todoList = document.getElementById('todoList');
 
-  
    function checkInput() {
        const value = input.value.trim();
        button.disabled = value.length < 3 || value.length > 200;
