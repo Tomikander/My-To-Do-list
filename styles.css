@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-   background: burlywood;
+   background: purple;
    padding: 20px;
    border-radius: 8px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -21,7 +21,7 @@ input[type="text"] {
    width: 80%;
    padding: 10px;
    margin-bottom: 10px;
-   border: 1px solid #ddd;
+   border: 1px solid black;
    border-radius: 4px;
    font-size: 16px;
 }
@@ -31,7 +31,7 @@ button {
    border: none;
    border-radius: 4px;
    background-color: #28a745;
-   color: burlywood;
+   color: black;
    font-size: 16px;
    cursor: pointer;
    transition: background-color 0.3s;
@@ -58,4 +58,42 @@ li {
    border-bottom: 1px solid #ddd;
    border-radius: 4px;
    margin-bottom: 5px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+li input[type='checkbox'] {
+   margin-right: 10px;
+}
+
+li button {
+   margin-left: 5px;
+   padding: 5px 10px;
+   border: none;
+   border-radius: 4px;
+   background-color: #007bff;
+   color: write;
+   cursor: pointer;
+}
+
+li button:hover {
+   background-color: #0056b3;
+}
+
+li button.delete {
+   background-color: #dc3545;
+}
+
+li button.delete:hover {
+   background-color: #c82333;
+}
+
+li button.edit {
+   background-color: #ffc107;
+   color: black;
+}
+
+li button.edit:hover {
+   background-color: #e0a800;
 }
