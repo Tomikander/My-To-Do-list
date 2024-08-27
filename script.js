@@ -1,94 +1,95 @@
 document.addEventListener('DOMContentLoaded', () => {
    const input = document.getElementById('todoInput');
-   const button = document.getElementById('addButton');
+   const addButton = document.getElementById('addButton');
    const todoList = document.getElementById('todoList');
    const doneList = document.createElement('ul');
    doneList.id = 'doneList';
-   doneList.innerHTML = '<h2>Create</h2>';
+   doneList.innerHTML = '<h2>Готово</h2>';
    document.querySelector('.container').appendChild(doneList);
 
    let editMode = false;
    let currentEditElement = null;
 
    function checkInput() {
-      const value = input.value.trim();
-      addButton.disabled = value.length < 3 || value.length > 200;
-      updateEditButtons();
-  }
-
-  function updateEditButtons() {
-   const editButtons = document.querySelectorAll('li button.edit');
-   editButtons.forEach(button => {
-      button.disabled = editMode;
-      button.title = editMode ? 'Очистите поле ввода' : '';
-   })
-  }
-
-  input.addEventListener('input', () => {
-   checkInput();
-  });
-  addButton.addEventListener('click', () => {
-   if (editMode) {
-       if (input.value.trim()) {
-           currentEditElement.querySelector('span').textContent = input.value.trim();
-           addButton.textContent = 'Добавить';
-           editMode = false;
-           currentEditElement = null;
-           input.value = '';
-           checkInput();
-       }
-   } else {
-       if (input.value.trim()) {
-           const li = document.createElement('li');
-
-           const checkbox = document.createElement('input');
-           checkbox.type = 'checkbox';
-           checkbox.className = 'checkbox';
-           checkbox.addEventListener('change', () => {
-               if (checkbox.checked) {
-                   li.querySelector('span').style.textDecoration = 'line-through';
-                   doneList.appendChild(li);
-                   updateEditButtons();
-               } else {
-                   li.querySelector('span').style.textDecoration = 'none';
-                   todoList.appendChild(li);
-                   updateEditButtons();
-               }
-           });
-           li.appendChild(checkbox);
-
-           const text = document.createElement('span');
-           text.textContent = input.value.trim();
-           li.appendChild(text);
-
-           const editButton = document.createElement('button');
-           editButton.textContent = 'edit';
-           editButton.className = 'edit';
-           editButton.addEventListener('click', () => {
-               input.value = text.textContent;
-               addButton.textContent = 'Сохранить';
-               editMode = true;
-               currentEditElement = li;
-               checkInput();
-           });
-           li.appendChild(editButton);
-
-           const deleteButton = document.createElement('button');
-           deleteButton.textContent = 'delete';
-           deleteButton.className = 'delete';
-           deleteButton.addEventListener('click', () => {
-               li.parentElement.removeChild(li);
-           });
-           li.appendChild(deleteButton);
-
-           todoList.appendChild(li);
-
-           input.value = '';
-           checkInput();
-       }
+       const value = input.value.trim();
+       addButton.disabled = value.length < 3 || value.length > 200;
+       updateEditButtons();
    }
+
+   function updateEditButtons() {
+       const editButtons = document.querySelectorAll('li button.edit');
+       editButtons.forEach(button => {
+           button.disabled = editMode;
+           button.title = editMode ? 'Очистите поле ввода' : '';
+       });
+   }
+
+   input.addEventListener('input', () => {
+       checkInput();
+   });
+
+   addButton.addEventListener('click', () => {
+       if (editMode) {
+           if (input.value.trim()) {
+               currentEditElement.querySelector('span').textContent = input.value.trim();
+               addButton.textContent = 'Добавить';
+               editMode = false;
+               currentEditElement = null;
+               input.value = '';
+               checkInput();
+           }
+       } else {
+           if (input.value.trim()) {
+               const li = document.createElement('li');
+
+               const checkbox = document.createElement('input');
+               checkbox.type = 'checkbox';
+               checkbox.className = 'checkbox';
+               checkbox.addEventListener('change', () => {
+                   if (checkbox.checked) {
+                       li.querySelector('span').style.textDecoration = 'line-through';
+                       doneList.appendChild(li);
+                       updateEditButtons();
+                   } else {
+                       li.querySelector('span').style.textDecoration = 'none';
+                       todoList.appendChild(li);
+                       updateEditButtons();
+                   }
+               });
+               li.appendChild(checkbox);
+
+               const text = document.createElement('span');
+               text.textContent = input.value.trim();
+               li.appendChild(text);
+
+               const editButton = document.createElement('button');
+               editButton.textContent = 'edit';
+               editButton.className = 'edit';
+               editButton.addEventListener('click', () => {
+                   input.value = text.textContent;
+                   addButton.textContent = 'Сохранить';
+                   editMode = true;
+                   currentEditElement = li;
+                   checkInput();
+               });
+               li.appendChild(editButton);
+
+               const deleteButton = document.createElement('button');
+               deleteButton.textContent = 'delete';
+               deleteButton.className = 'delete';
+               deleteButton.addEventListener('click', () => {
+                   li.parentElement.removeChild(li);
+               });
+               li.appendChild(deleteButton);
+
+               todoList.appendChild(li);
+
+               input.value = '';
+               checkInput();
+           }
+       }
+   });
+
+
+   updateEditButtons();
 });
-
-
-updateEditButtons();
-}) 
