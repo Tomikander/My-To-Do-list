@@ -113,6 +113,7 @@ li button.edit:hover {
 }
 
 
+/* Добавление стилей для нового списка "Готово" */
 #doneList {
    margin-top: 20px;
    padding: 10px;
@@ -126,10 +127,10 @@ li button.edit:hover {
    padding: 0;
 }
 
-
 li span.completed {
    text-decoration: line-through;
 }
+
 
 button[title] {
    position: relative;
