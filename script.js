@@ -47,14 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
                checkbox.className = 'checkbox';
                checkbox.addEventListener('change', () => {
                    if (checkbox.checked) {
-                       li.querySelector('span').style.textDecoration = 'line-through';
+                       li.querySelector('span').classList.add('completed');
                        doneList.appendChild(li);
-                       updateEditButtons();
                    } else {
-                       li.querySelector('span').style.textDecoration = 'none';
+                       li.querySelector('span').classList.remove('completed');
                        todoList.appendChild(li);
-                       updateEditButtons();
                    }
+                   updateEditButtons();
                });
                li.appendChild(checkbox);
 
@@ -79,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                deleteButton.className = 'delete';
                deleteButton.addEventListener('click', () => {
                    li.parentElement.removeChild(li);
+                   updateEditButtons();
                });
                li.appendChild(deleteButton);
 
