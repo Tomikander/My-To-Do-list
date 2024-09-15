@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let editMode = false;
     let currentEditElement = null;
 
-    // Загружаем задачи из LocalStorage
+    
     function loadTasks() {
         const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const storedDoneTasks = JSON.parse(localStorage.getItem('doneTasks')) || [];
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         storedDoneTasks.forEach(task => addTaskToDOM(task.text, true));
     }
 
-    // Сохраняем задачи в LocalStorage
+    
     function saveTasks() {
         const tasks = [];
         const doneTasks = [];
@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentEditElement = null;
                 input.value = '';
                 checkInput();
-                saveTasks();  // Сохраняем изменения после редактирования
+                saveTasks();  
             }
         } else {
             if (input.value.trim()) {
                 addTaskToDOM(input.value.trim(), false);
                 input.value = '';
                 checkInput();
-                saveTasks();  // Сохраняем задачи после добавления
+                saveTasks();  
             }
         }
     });
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteButton.addEventListener('click', () => {
             li.parentElement.removeChild(li);
             updateEditButtons();
-            saveTasks();  // Сохраняем задачи после удаления
+            saveTasks();  
         });
         li.appendChild(deleteButton);
 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Загружаем задачи при загрузке страницы
+    
     loadTasks();
     updateEditButtons();
 });
